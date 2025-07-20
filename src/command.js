@@ -1,10 +1,12 @@
+// src/command.js
+
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { newNote } from "./notes";
+import { newNote, getAllNotes, findNotes, removeNote, removeAllNotes } from "./notes.js";
 
 yargs(hideBin(process.argv))
   .command(
-    "new <addnote>",
+    "new <note>", // Changed from <addnote> to <note> for consistency
     "create a new note",
     (yargs) => {
       return yargs.positional("note", {
@@ -15,7 +17,8 @@ yargs(hideBin(process.argv))
     async (argv) => {
       const tags = argv.tags ? argv.tags.split(',') : []
       const note = await newNote(argv.note, tags);
-      console.log(`New note: ${note}`)
+      // Changed console.log to match the expected output format
+      console.log('New note!', note); 
     }
   )
   .option("tags", {
@@ -27,7 +30,10 @@ yargs(hideBin(process.argv))
     "all",
     "get all notes",
     () => {},
-    async (argv) => {}
+    async (argv) => {
+      const notes = await getAllNotes();
+      console.log(notes);
+    }
   )
   .command(
     "find <filter>",
@@ -39,7 +45,10 @@ yargs(hideBin(process.argv))
         type: "string",
       });
     },
-    async (argv) => {}
+    async (argv) => {
+      const matches = await findNotes(argv.filter);
+      console.log(matches);
+    }
   )
   .command(
     "remove <id>",
@@ -50,7 +59,10 @@ yargs(hideBin(process.argv))
         description: "The id of the note you want to remove",
       });
     },
-    async (argv) => {}
+    async (argv) => {
+      const id = await removeNote(argv.id);
+      console.log(`Removed note with id: ${id}`);
+    }
   )
   .command(
     "web [port]",
@@ -62,13 +74,20 @@ yargs(hideBin(process.argv))
         type: "number",
       });
     },
-    async (argv) => {}
+    async (argv) => {
+      // Web server logic would go here
+    }
   )
   .command(
     "clean",
     "remove all notes",
     () => {},
-    async (argv) => {}
+    async (argv) => {
+      await removeAllNotes();
+      console.log('All notes removed');
+    }
   )
   .demandCommand(1)
   .parse();
+
+// Removed extra closing brace from the end of the file
