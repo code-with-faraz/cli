@@ -1,4 +1,26 @@
 {
-    "notes": [],
-    "users": []
+  "notes": [
+    {
+      "tags": [
+        "miraculous"
+      ],
+      "id": 1753005804978,
+      "content": "Watch Miraculous ladybug"
+    },
+    {
+      "tags": [
+        "testing"
+      ],
+      "id": 1753006526154,
+      "content": "This is a test for the find command"
+    },
+    {
+      "tags": [
+        "personal",
+        "fun"
+      ],
+      "id": 1753007282517,
+      "content": "My first cool note"
+    }
+  ]
 }

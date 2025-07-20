@@ -17,7 +17,7 @@ export const getDB = async () => {
 
 // Correctly export saveDB as a named export
 export const saveDB = async (db) => {
-    await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2)); // Adjusted spacing for readability
+    await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2));
     return db;
 } 
 

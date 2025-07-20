@@ -1,3 +1,6 @@
+// src/notes.js
+
+// Add .js to the end of './db'
 import { insertDB, saveDB, getDB } from "./db.js";
 
 export const newNote = async (note, tags) => {
